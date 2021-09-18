@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="/style.css">
+
+  <title>Frontend Mentor | Todo app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="background-image">
+    <img src="/images/bg-desktop-dark.jpg" alt="">
+  </div>
+
+  <div class="container">
+    <header>
+
+      <div class="title">
+        TODO
+      </div>
+
+      <div class="theme">
+        <img src="/images//icon-sun.svg" alt="">
+      </div>
+
+    </header>
+
+    <div class="new-todo">
+
+      <div class="check">
+        <div class="check-mark">
+
+        </div>
+      </div>
+
+      <div class="new-todo-input">
+        <form onsubmit="addItem(event)">
+          <input type="text" name="" id="todo-input" placeholder="Create a new todo">
+        </form>
+      </div>
+
+    </div>
+
+    <div class="todo-items-wrapper">
+
+      <div class="todo-items">
+
+        <!-- todo items will rendered dynamically from firebase------------ -->
+
+      </div>
+
+      <div class="todo-items-info">
+        <div class="items-left">
+          5 items left
+        </div>
+        <div class="items-statuses">
+          <span class="active-status">All</span>
+          <span>Active</span>
+          <span>Completed</span>
+        </div>
+        <div class="items-clear">
+          <span>Clear</span>
+          <span>Completed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+
+
+  <!-- firebase setup----------------------------- -->
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAr3J_Sag-2wR2RCi76AI72P7JInhKV6FM",
+      authDomain: "todo-list-28a78.firebaseapp.com",
+      projectId: "todo-list-28a78",
+      storageBucket: "todo-list-28a78.appspot.com",
+      messagingSenderId: "98126737969",
+      appId: "1:98126737969:web:84eae30ae2a08ec8579b10",
+      measurementId: "G-BD3YHZHYMS"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    //initialize database
+    const db = firebase.firestore();
+  </script>
+
+  <script src="/app.js"></script>
+</body>
+
+</html>
