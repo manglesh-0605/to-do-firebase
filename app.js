@@ -37,40 +37,51 @@ function getItems() {
 
 // to generate the html from the fetched items-----------------------
 function genereateItems(items) {
-    itemsHtml = "";
-    items.forEach(item => {
-        itemsHtml += `
+  itemsHtml = '';
+  items.forEach((item) => {
+    itemsHtml += `
         <div class="todo-item">
+        <div class="todo-start">
           <div class="check">
-            <div data-id="${item.id}" class="check-mark ${item.status == 'completed' ? 'checked' : ""}">
+            <div data-id="${item.id}" class="check-mark ${
+      item.status == 'completed' ? 'checked' : ''
+    }">
               <img src="/images/icon-check.svg" alt="">
             </div>
 
           </div>
-          <div class="todo-text ${item.status == 'completed' ? 'checked' : ""}">
+          <div class="todo-text ${item.status == 'completed' ? 'checked' : ''}">
             ${item.text}
           </div >
+          </div>
+          <div data-id="${item.id}" class="todo-end">X</div>
         </div >
-            `
-    })
+            `;
+  });
 
-    document.querySelector('.todo-items').innerHTML = itemsHtml;
-    createEventListners()
-
+  document.querySelector('.todo-items').innerHTML = itemsHtml;
+  createEventListners();
 }
-
 
 //to create event listner on the each of the checkboxes-------------------------
 function createEventListners() {
-    let todoCheckMarks = document.querySelectorAll('.todo-item .check .check-mark')
-    // console.log(todoCheckMarks)
+  let todoCheckMarks = document.querySelectorAll(
+    '.todo-item .check .check-mark'
+  );
+  let crossBtns = document.querySelectorAll('.todo-item .todo-end');
+  // console.log(todoCheckMarks)
 
-    todoCheckMarks.forEach(checkMark => {
-        checkMark.addEventListener('click', function () {
-            markCompleted(checkMark.dataset.id);
-        })
-    })
+  todoCheckMarks.forEach((checkMark) => {
+    checkMark.addEventListener('click', function () {
+      markCompleted(checkMark.dataset.id);
+    });
+  });
 
+  crossBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      deleteItem(btn.dataset.id);
+    });
+  });
 }
 
 //to mark complete or Active in the notes--------------------
@@ -99,6 +110,15 @@ function markCompleted(id) {
         }
     })
 
+}
+
+function deleteItem(id) {
+  try {
+    db.collection('todo-items').doc(id).delete();
+    console.log('successfully deleted the item');
+  } catch (err) {
+    console.log('error while deleting the item from firestore');
+  }
 }
 
 
