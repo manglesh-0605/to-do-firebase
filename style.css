@@ -134,6 +134,20 @@ header .title {
   transition: all 0.25s ease;
   z-index: 1;
   cursor: pointer;
+  justify-content: space-between;
+  }
+  
+  .todo-start {
+    display: flex;
+  }
+  
+  .todo-end {
+    margin-right: 1rem;
+    color: #fff;
+  }
+  
+  .todo-end:hover {
+    opacity: 0.5;
 }
 
 .todo-item:hover {
